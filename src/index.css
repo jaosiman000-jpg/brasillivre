@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  /* Netflix Design System - Brasil Livre */
+  --color-nfl-black: #141414;
+  --color-nfl-dark: #0b0b0b;
+  --color-nfl-red: #e50914;
+  --color-nfl-red-dark: #b20710;
+  --color-nft-red-hover: #f6121d;
+  --color-nfl-text: #ffffff;
+  --color-nfl-grey: #808080;
+  --color-nfl-grey-dark: #2f2f2f;
+  --color-nfl-grey-light: #d1d1d1;
+
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Bebas Neue", "Inter", sans-serif;
+
+  /* Typography scale (Figma) */
+  --text-caption2: 11px;
+  --text-caption1: 13px;
+  --text-smallbody: 14px;
+  --text-body: 16px;
+  --text-headline2: 17px;
+  --text-headline1: 20px;
+  --text-title: 28px;
+  --text-hero: 48px;
+  --text-display: 72px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-nfl-black);
+    color: var(--color-nfl-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom scrollbar - Netflix style */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6a6a6a;
+}
+
+/* Hero vignette gradient overlay */
+.hero-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(20, 20, 20, 0) 0%,
+      rgba(20, 20, 20, 0.35) 50%,
+      rgba(20, 20, 20, 0.85) 85%,
+      var(--color-nfl-black) 100%
+    ),
+    radial-gradient(
+      80% 60% at 20% 30%,
+      rgba(20, 20, 20, 0.2) 0%,
+      rgba(20, 20, 20, 0.5) 100%
+    );
+  pointer-events: none;
+}
+
+/* Title-prime progress shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Preview-thumbnail hover transition */
+.thumb-hover {
+  transition: transform 220ms ease, box-shadow 220ms ease, outline 220ms ease;
+}
+.thumb-hover:hover {
+  transform: scale(1.04);
+  z-index: 30;
+}
